@@ -1,0 +1,32 @@
+1.Find out the details including grade and dname of all clerk. 
+select emp.*, grade, dname from emp, dept, salgrade where emp.deptno = dept.deptno and sal between losal and hisal and job = 'CLERK'
+
+2.Find out the details with grade of the second maximum salary holder.
+select emp.*, grade, dname from emp, dept, salgrade where emp.deptno = dept.deptno and sal between losal and hisal and sal = (select max(sal) from emp where sal < (select max(sal) from emp))
+
+3.Find the grade 2 mgr who belong from dep 10 or 20.
+select emp.*, grade, dname from emp, dept, salgrade where emp.deptno = dept.deptno and sal between losal and hisal and emp.deptno in (10,20) and grade = 2
+
+4.Find the highest paid Analyst of the Finance department who belong from the grade 2 and 3.
+select emp.*, grade, dname from emp, dept, salgrade where emp.deptno = dept.deptno and sal between losal and hisal and sal = (select max(sal) from emp where job='ANALYST') and grade in (2,3) and dname='FINANCE'
+
+
+5.Find out the dname with the most senior employee.
+select dname from emp, dept where emp.deptno = dept.deptno and hiredate = (select min(hiredate) from emp)
+
+6.List out the Name, Job, Salary, grade of the emps in the department with the highest no of employees.
+select ename, job, sal, grade from emp, dept, salgrade where emp.deptno = dept.deptno and sal between losal and hisal and emp.deptno = (select deptno from emp group by deptno having count(*) = (select max(count(*)) from emp,dept where dept.deptno=emp.deptno group by emp.deptno))
+
+8.List all the Grade2 and Grade 3 salesman who belong from the Chicago and Dallas.
+select emp.*, dept.*, grade from emp, dept, salgrade where emp.deptno = dept.deptno and sal between losal and hisal and grade in (2,3) and loc in ('CHICAGO', 'DALLAS')
+
+9.List THE Name of loc where highest no. of emps are working.
+select loc from dept where loc = (select loc from emp,dept where emp.deptno = dept.deptno group by loc having count(*) = (select max(count(*)) from emp,dept where emp.deptno = dept.deptno group by loc))
+
+10.Find out the grade of all mgrs.
+select emp.*, grade from emp, salgrade where sal between losal and hisal and job='MANAGER'
+
+12.Find out the mgr who lives in DALLAS and belong from grade 3 and 4.
+select emp.*, dept.* from emp, dept, salgrade where emp.deptno = dept.deptno and sal between losal and hisal and grade in (3,4) and loc = 'DALLAS' and job='MANAGER'
+
+
