@@ -24,10 +24,10 @@
 ### SALGRADE TABLE
 
 | Column Name | Data Type | Nullable | Default | Primary Key |
-| :---------: | :-------: | :------: | :-----: | :---------: | --- |
-|    GRADE    |  NUMBER   |   Yes    |         |      -      | -   |
-|    LOSAL    |  NUMBER   |   Yes    |         |      -      | -   |
-|    HISAL    |  NUMBER   |   Yes    |         |      -      | -   |
+| :---------: | :-------: | :------: | :-----: | :---------: |
+|    GRADE    |  NUMBER   |   Yes    |    -    |      -      |
+|    LOSAL    |  NUMBER   |   Yes    |    -    |      -      |
+|    HISAL    |  NUMBER   |   Yes    |    -    |      -      |
 
 ## DATA
 
@@ -73,5 +73,14 @@
 
 #### JOINING
 
-> SHOW ALL
-> HELLO WORLD
+<details><summary>CLICK ME</summary>
+<p>
+
+#### We can hide anything, even code!
+
+```ruby
+   puts "Hello World"
+```
+
+</p>
+</details>
