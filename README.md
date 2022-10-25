@@ -73,6 +73,9 @@
 
 #### JOINING
 
+- Display all the managers & clerks name, id along with their department details who work in Accounts and Marketing departments.
+
 <details><summary>SHOW ALL</summary>
+
 - Display all the managers & clerks name, id along with their department details who work in Accounts and Marketing departments.
 </details>
