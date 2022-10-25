@@ -1,7 +1,37 @@
-What it contains?
-scott(1).txt contains all the quaries for creating following tables and insertion of the table data.
+## OBJECT BROWSER
 
-#### EMP table
+### EMP TABLE
+
+| Column Name |  Data Type   | Nullable | Default | Primary Key |
+| :---------: | :----------: | :------: | :-----: | :---------: |
+|    EMPNO    | NUMBER(4,0)  |    No    |    -    |      1      |
+|    ENAME    | VARCHAR2(10) |   Yes    |    -    |      -      |
+|     JOB     | VARCHAR2(9)  |   Yes    |    -    |      -      |
+|     MGR     | NUMBER(4,0)  |   Yes    |    -    |      -      |
+|  HIREDATE   |     DATE     |   Yes    |    -    |      -      |
+|     SAL     | NUMBER(7,2)  |   Yes    |    -    |      -      |
+|    COMM     | NUMBER(7,2)  |   Yes    |    -    |      -      |
+|   DEPTNO    | NUMBER(2,0)  |   Yes    |    -    |      -      |
+
+### DEPT TABLE
+
+| Column Name |  Data Type   | Nullable | Default | Primary Key |
+| :---------: | :----------: | :------: | :-----: | :---------: |
+|   DEPTNO    | NUMBER(2,0)  |    No    |    -    |      1      |
+|    DNAME    | VARCHAR2(14) |   Yes    |    -    |      -      |
+|     LOC     | VARCHAR2(13) |   Yes    |    -    |      -      |
+
+### SALGRADE TABLE
+
+| Column Name | Data Type | Nullable | Default | Primary Key |
+| :---------: | :-------: | :------: | :-----: | :---------: | --- |
+|    GRADE    |  NUMBER   |   Yes    |         |      -      | -   |
+|    LOSAL    |  NUMBER   |   Yes    |         |      -      | -   |
+|    HISAL    |  NUMBER   |   Yes    |         |      -      | -   |
+
+## DATA
+
+#### EMP TABLE
 
 | EMPNO | ENAME  |    JOB    | MGR  | HIREDATE  | SAL  | COMM | DEPTNO |
 | :---: | :----: | :-------: | :--: | :-------: | :--: | :--: | :----: |
@@ -20,7 +50,7 @@ scott(1).txt contains all the quaries for creating following tables and insertio
 | 7902  |  FORD  |  ANALYST  | 7566 | 03-DEC-81 | 3000 |  -   |   20   |
 | 7934  | MILLER |   CLERK   | 7782 | 23-JAN-82 | 1300 |  -   |   10   |
 
-#### DEPT table
+#### DEPT TABLE
 
 | DEPTNO |   DNAME    |   LOC    |
 | :----: | :--------: | :------: |
@@ -29,7 +59,7 @@ scott(1).txt contains all the quaries for creating following tables and insertio
 |   30   |   SALES    | CHICAGO  |
 |   40   | OPERATIONS |  BOSTON  |
 
-#### SALGRADE table
+#### SALGRADE TABLE
 
 | GRADE | LOSAL | HISAL |
 | :---: | :---: | :---: |
@@ -38,3 +68,10 @@ scott(1).txt contains all the quaries for creating following tables and insertio
 |   3   | 1401  | 2000  |
 |   4   | 2001  | 3000  |
 |   5   | 3001  | 9999  |
+
+## QURIES
+
+#### JOINING
+
+> SHOW ALL
+> HELLO WORLD
