@@ -1,7 +1,7 @@
 What it contains?
 scott(1).txt contains all the quaries for creating following tables and insertion of the table data.
 
-####EMP table
+#### EMP table
 
 | EMPNO | ENAME  | JOB       | MGR  | HIREDATE  | SAL  | COMM | DEPTNO |
 | ----- | ------ | --------- | ---- | --------- | ---- | ---- | ------ |
@@ -20,7 +20,7 @@ scott(1).txt contains all the quaries for creating following tables and insertio
 | 7902  | FORD   | ANALYST   | 7566 | 03-DEC-81 | 3000 | -    | 20     |
 | 7934  | MILLER | CLERK     | 7782 | 23-JAN-82 | 1300 | -    | 10     |
 
-####DEPT table
+#### DEPT table
 
 | DEPTNO | DNAME      | LOC      |
 | ------ | ---------- | -------- |
@@ -29,7 +29,7 @@ scott(1).txt contains all the quaries for creating following tables and insertio
 | 30     | SALES      | CHICAGO  |
 | 40     | OPERATIONS | BOSTON   |
 
-####SALGRADE table
+#### SALGRADE table
 
 | GRADE | LOSAL | HISAL |
 | ----- | ----- | ----- |
