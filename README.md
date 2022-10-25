@@ -71,6 +71,8 @@
 
 ## QURIES
 
+#### EQUI JOIN AND NON EQUI JOIN
+
 ###### EQUI JOIN :
 
 > EQUI JOIN creates a JOIN for equality or matching column(s) values of the relative tables. EQUI JOIN also create JOIN by using JOIN with ON and then providing the names of the columns with their relative tables to check equality using equal sign (=).
@@ -78,8 +80,6 @@
 ###### NON EQUI JOIN :
 
 > NON EQUI JOIN performs a JOIN using comparison operator other than equal(=) sign like >, <, >=, <= with conditions.
-
-#### EQUI JOIN AND NON EQUI JOIN
 
 <details><summary>SHOW ALL</summary>
 
@@ -189,5 +189,50 @@
   select * from EMP where JOB in ('MANAGER', 'CLERK') and DEPTNO = (select DEPTNO from DEPT where DNAME in ('ACCOUNTING', 'MARKETING'))
   ```
 - Select all the employees who work in DALLAS.
-`select * from EMP where DEPTNO = (select DEPTNO from DEPT where LOC = 'DALLAS')`
+` select * from EMP where DEPTNO = (select DEPTNO from DEPT where LOC = 'DALLAS') `
+</details>
+
+#### GROUP BY
+
+> The GROUP BY statement groups rows that have the same values into summary rows. This statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
+
+<details><summary>SHOW ALL</summary>
+
+- Find out the grade with the maximum No of employees.
+  ```
+  select grade, count(*) from emp, salgrade where sal between losal and hisal group by grade having count(*)  = (select max(count(*)) from emp, salgrade where sal between losal and hisal group by grade)
+  ```
+- List out the Name, Job, Salary,grade of the emps in the department with the highest average salary
+  ```
+  select ename, job, sal, grade from emp, salgrade where sal between losal and hisal and deptno = (select deptno from emp group by deptno having avg(sal) = (select max(avg(sal)) from emp group by deptno))
+  ```
+- Write a query to display the department name, location name and number of employees and their rounded average salary for all employees as department name wise and location wise.
+  ```
+  select dname, loc, count(*), round(avg(sal)) from emp, dept where emp.deptno = dept.deptno group by dname,loc
+  ```
+- Find out the location with maximum no of average salary.
+  ```
+  select loc from dept where deptno = (select deptno from emp group by deptno having avg(sal) = (select max(avg(sal)) from emp group by deptno))
+  ```
+- List the Name,job,sal,dname and grade of the loc where highest no.of emps are working.
+  ```
+  select ename, job,sal, dname, grade from emp,dept,salgrade where emp.deptno = dept.deptno and sal between losal and hisal and loc = (select loc from dept, emp where emp.deptno = dept.deptno group by loc having count(*) = (select max(count(*)) from emp,dept where emp.deptno = dept.deptno group by loc))
+  ```
+- Find out the employee details of the grade which has the maximum number of the employees who belong from the sales department.
+  ```
+  select emp.* from emp, salgrade where sal between losal and hisal and grade = (select grade from emp, salgrade where sal between losal and hisal group by grade having count(*)  = (select max(count(*)) from emp, salgrade where sal between losal and hisal group by grade)) and deptno = (select deptno from dept where dname='SALES')
+  ```
+- List the highest paid emp of Chicago joined before the most recently hired emp of grade2
+  ```
+  select emp.* from emp, dept where emp.deptno = dept.deptno and sal = (select max(sal) from emp, dept where emp.deptno = dept.deptno and loc='CHICAGO' and hiredate < (select max(hiredate) from emp,salgrade where sal between losal and hisal and grade = 2))
+  ```
+- Increment the salary of the emplyees to 7% who belong from grade 2.
+  ```
+  update emp set sal=(sal+(sal*0.07)) where sal in (select sal from emp, salgrade where sal between losal and hisal and grade = 2)
+  ```
+- Delete the most senior employee.
+  ```
+  delete from emp where hiredate = (select min(hiredate) from emp)
+  ```
+
 </details>
