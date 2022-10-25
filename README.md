@@ -73,28 +73,65 @@
 
 #### JOINING
 
-    ```
-    select emp.ename,emp.empno, dept.* from emp, dept where emp.deptno = dept.deptno and DNAME in ('ACCOUNTING', 'MARKETING')
-    ```
-
 <details><summary>SHOW ALL</summary>
 
 - Display all the managers & clerks name, id along with their department details who work in Accounts and Marketing departments.
   ```
-  select emp.ename,emp.empno, dept.* from emp, dept where emp.deptno = dept.deptno and DNAME in ('ACCOUNTING', 'MARKETING')
+  select * from emp, dept where emp.deptno = dept.deptno and dname in ('ACCOUNTING', 'MARKETING') and job in ('MANAGER', 'CLERK')
   ```
 - Display all the salesmen’s name,job,dname and loc who are not located at DALLAS.
+  ```
+   select emp.ename, emp.job, dept.dname, dept.loc from emp, dept where dept.loc != 'DALLAS' and emp.job='SALESMAN' and emp.deptno = dept.deptno
+  ```
 - Select department name & location of all the employees working for CLARK.
+  ```
+  select dept.dname, dept.loc, emp.* from dept, emp where dept.deptno = emp.deptno and emp.mgr = (select empno from emp where ename = 'CLARK')
+  ```
 - Select all the departmental information for all the managers.(Manager is not a job)
+  ```
+  select dept.* from dept, emp where emp.deptno = dept.deptno and emp.empno in (select mgr from emp)
+  ```
 - Select all the employees who work in DALLAS.
+  ```
+  select emp.*, dept.* from dept, emp where dept.loc = 'DALLAS' and emp.deptno = dept.deptno
+  ```
 - Find the highest paid employee of sales department. (Show his empno,ename,dname,sal,loc).
-- List the emps with departmental information Whose Jobs are same as MILLER or Sal is more than ALLEN .
+  ```
+  select emp.empno, emp.ename, dept.dname, dept.loc, emp.sal from dept, emp where emp.SAL = (select max(SAL) from emp, dept where emp.deptno = dept.deptno and dept.dname = 'SALES') and emp.deptno = dept.deptno
+  ```
+- List the emps with departmental information Whose Jobs are same as MILLER or Sal is more than ALLEN.
+  ```
+  select emp.*, dept.* from emp, dept where emp.deptno = dept.deptno and (sal > (select sal from emp where ename='ALLEN') or job = (select job from emp where ename = 'MILLER'))
+  ```
 - Find out the employees who are working in CHICAGO and DALLAS.
+  ```
+  select * from emp where deptno in ( select deptno from dept where loc in ('CHICAGO', 'DALLAS'))
+  ```
 - List all the Grade2 and Grade 3 emps.
+  ```
+  select * from emp where sal in (select sal from salgrade, emp where salgrade.grade in (2,3) and emp.sal between salgrade.losal and salgrade.hisal)
+  ```
 - Display all Grade 4,5 Analyst and Manager.
+  ```
+  select * from emp where sal in (select sal from salgrade, emp where salgrade.grade in (4,5) and emp.sal between salgrade.losal and salgrade.hisal) and JOB in ('ANALYST', 'MANAGER')
+  ```
 - List all the Grade2 and Grade 3 emps who belong from the Chicago.
+  ```
+  select * from emp where sal in (select sal from salgrade, emp where salgrade.grade in (2,3) and emp.sal between salgrade.losal and salgrade.hisal) and deptno = (select deptno from dept where loc='CHICAGO')
+  ```
 - Find the highest paid employee of sales department. (Show his empno,ename,dname,sal,loc).
+
+  ```
+  select empno, ename, dname, sal, loc from emp, dept where emp.deptno = dept.deptno and sal = (select max(sal) from emp, dept where emp.deptno = dept.deptno and dept.deptno =  (select deptno from dept where dname = 'SALES'))
+  ```
+
 - Find out the mgr who lives in DALLAS and belong from grade 3 and 4.
+  ```
+  select * from emp where deptno in (select deptno from dept where loc='DALLAS') and EMPNO in ( select MGR from emp where sal in (select sal from salgrade, emp where salgrade.grade in (3,4) and emp.sal between salgrade.losal and salgrade.hisal))
+  ```
 - Find out the grade of all mgrs.
+  ```
+  select emp.*, grade from emp, salgrade where emp.sal between losal and hisal and empno in (select mgr from emp)
+  ```
 
 </details>
