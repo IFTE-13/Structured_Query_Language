@@ -71,15 +71,15 @@
 
 ## QURIES
 
+###### EQUI JOIN :
+
+> EQUI JOIN creates a JOIN for equality or matching column(s) values of the relative tables. EQUI JOIN also create JOIN by using JOIN with ON and then providing the names of the columns with their relative tables to check equality using equal sign (=).
+
+###### NON EQUI JOIN :
+
+> NON EQUI JOIN performs a JOIN using comparison operator other than equal(=) sign like >, <, >=, <= with conditions.
+
 #### EQUI JOIN AND NON EQUI JOIN
-
-> EQUI JOIN :
-
-    EQUI JOIN creates a JOIN for equality or matching column(s) values of the relative tables. EQUI JOIN also create JOIN by using JOIN with ON and then providing the names of the columns with their relative tables to check equality using equal sign (=).
-
-> NON EQUI JOIN :
-
-    NON EQUI JOIN performs a JOIN using comparison operator other than equal(=) sign like >, <, >=, <= with conditions.
 
 <details><summary>SHOW ALL</summary>
 
@@ -189,5 +189,5 @@
   select * from EMP where JOB in ('MANAGER', 'CLERK') and DEPTNO = (select DEPTNO from DEPT where DNAME in ('ACCOUNTING', 'MARKETING'))
   ```
 - Select all the employees who work in DALLAS.
-` select * from EMP where DEPTNO = (select DEPTNO from DEPT where LOC = 'DALLAS') `
+`select * from EMP where DEPTNO = (select DEPTNO from DEPT where LOC = 'DALLAS')`
 </details>
