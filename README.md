@@ -71,7 +71,15 @@
 
 ## QURIES
 
-#### JOINING
+#### EQUI JOIN AND NON EQUI JOIN
+
+> EQUI JOIN :
+
+    EQUI JOIN creates a JOIN for equality or matching column(s) values of the relative tables. EQUI JOIN also create JOIN by using JOIN with ON and then providing the names of the columns with their relative tables to check equality using equal sign (=).
+
+> NON EQUI JOIN :
+
+    NON EQUI JOIN performs a JOIN using comparison operator other than equal(=) sign like >, <, >=, <= with conditions.
 
 <details><summary>SHOW ALL</summary>
 
@@ -134,4 +142,52 @@
   select emp.*, grade from emp, salgrade where emp.sal between losal and hisal and empno in (select mgr from emp)
   ```
 
+</details>
+
+#### SUB QUERY
+
+<details><summary>SHOW ALL</summary>
+
+- Show the details of the min salary holder of the employee table.
+  ```
+  select * from EMP where SAL = (select MIN(SAL) from EMP)
+  ```
+- Find the details of the most senior employee.
+  ```
+  select * from EMP where HIREDATE = (select min(HIREDATE) from EMP)
+  ```
+- Select all the employees who are earning same as BLAKE.
+  ```
+  select * from EMP where SAL = (Select SAL from EMP where ENAME = 'BLAKE')
+  ```
+- Display all the employees who have joined after FORD
+  ```
+  select * from EMP where HIREDATE>(select HIREDATE from EMP where ENAME='FORD')
+  ```
+- List all the employees who are earning more than SMITH and less then KING.
+  ```
+  select * from EMP where SAL > (select SAL from EMP where ENAME='SMITH') and SAL < (select SAL from EMP where ENAME = 'KING')
+  ```
+- Find the employees who work in the same department with BLAKE
+  ```
+  select * from EMP where DEPTNO = (select DEPTNO from EMP where ENAME='BLAKE')
+  ```
+- Display all the salesmen who are not located at DALLAS.
+  ```
+  select * from EMP where JOB='SALESMAN' and DEPTNO != (select DEPTNO from DEPT where LOC ='DALLAS')
+  ```
+- Select department name & location of all the employees working for CLARK.
+  ```
+  select DNAME, LOC from DEPT where DEPTNO = (select DEPTNO from EMP where MGR=(select EMPNO from EMP where ENAME = 'CLARK'))
+  ```
+- Select all the departmental information for all the managers.
+  ```
+  select * from DEPT where DEPTNO in (select DEPTNO from EMP where JOB = 'MANAGER')
+  ```
+- Display all the managers & clerks who work in Accounts and Marketing departments.
+  ```
+  select * from EMP where JOB in ('MANAGER', 'CLERK') and DEPTNO = (select DEPTNO from DEPT where DNAME in ('ACCOUNTING', 'MARKETING'))
+  ```
+- Select all the employees who work in DALLAS.
+` select * from EMP where DEPTNO = (select DEPTNO from DEPT where LOC = 'DALLAS') `
 </details>
