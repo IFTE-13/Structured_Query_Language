@@ -73,9 +73,28 @@
 
 #### JOINING
 
-- Display all the managers & clerks name, id along with their department details who work in Accounts and Marketing departments.
+    ```
+    select emp.ename,emp.empno, dept.* from emp, dept where emp.deptno = dept.deptno and DNAME in ('ACCOUNTING', 'MARKETING')
+    ```
 
 <details><summary>SHOW ALL</summary>
 
 - Display all the managers & clerks name, id along with their department details who work in Accounts and Marketing departments.
+  ```
+  select emp.ename,emp.empno, dept.* from emp, dept where emp.deptno = dept.deptno and DNAME in ('ACCOUNTING', 'MARKETING')
+  ```
+- Display all the salesmen’s name,job,dname and loc who are not located at DALLAS.
+- Select department name & location of all the employees working for CLARK.
+- Select all the departmental information for all the managers.(Manager is not a job)
+- Select all the employees who work in DALLAS.
+- Find the highest paid employee of sales department. (Show his empno,ename,dname,sal,loc).
+- List the emps with departmental information Whose Jobs are same as MILLER or Sal is more than ALLEN .
+- Find out the employees who are working in CHICAGO and DALLAS.
+- List all the Grade2 and Grade 3 emps.
+- Display all Grade 4,5 Analyst and Manager.
+- List all the Grade2 and Grade 3 emps who belong from the Chicago.
+- Find the highest paid employee of sales department. (Show his empno,ename,dname,sal,loc).
+- Find out the mgr who lives in DALLAS and belong from grade 3 and 4.
+- Find out the grade of all mgrs.
+
 </details>
