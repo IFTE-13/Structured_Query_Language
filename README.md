@@ -187,6 +187,10 @@
   ```
   select emp.*, grade from emp, salgrade where emp.sal between losal and hisal and empno in (select mgr from emp)
   ```
+- List the employee Name, Job, Annual Salary, deptno, Dept name and grade who earn 36000 a year or who are not CLERKS.
+  ```
+  select ename, job, sal*12 as anualSalary, dept.deptno, dname, grade from emp, dept, salgrade where emp.deptno = dept.deptno and sal between losal and hisal and (sal*12 > 36000 or job != 'CLERK')
+  ```
 
 </details>
 
@@ -240,6 +244,22 @@
   ```
   select * from EMP where DEPTNO = (select DEPTNO from DEPT where LOC = 'DALLAS')
   ```
+- List the highest paid emp of Chicago joined before the most recently hired emp of grade2
+  ```
+  select * from emp where sal = (select max(sal) from emp, dept where emp.deptno = dept.deptno and dept.deptno = (select deptno from dept, salgrade where loc='CHICAGO' and sal between losal and hisal and grade = 2) and hiredate = (select min(hiredate) from emp where hiredate > (select min(hiredate) from emp)))
+  ```
+- Delete the maximum salary holders from the sales department.
+
+```
+DELETE FROM emp WHERE sal = (select max(sal) from emp, dept where emp.deptno = dept.deptno and dept.deptno = (select deptno from dept where dname = 'SALES'))
+```
+
+- Update the loc of all emplyees to Washington from Chicago.
+
+```
+UPDATE DEPT SET loc = 'Washington' WHERE loc = 'CHICAGO'
+```
+
   </details>
 
 #### GROUP BY
