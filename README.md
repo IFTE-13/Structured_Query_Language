@@ -307,7 +307,9 @@ UPDATE DEPT SET loc = 'Washington' WHERE loc = 'CHICAGO'
 
 </details>
 
-#### GROUP BY
+#### SELF JOIN
+
+> The SELF JOIN in SQL, as its name implies, is used to join a table to itself. This means that each row in a table is joined to itself and every other row in that table. However, referencing the same table more than once within a single query will result in an error. To avoid this, SQL SELF JOIN aliases are used.
 
 <details><summary>SHOW ALL</summary>
 
