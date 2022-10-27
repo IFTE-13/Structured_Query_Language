@@ -306,3 +306,43 @@ UPDATE DEPT SET loc = 'Washington' WHERE loc = 'CHICAGO'
   ```
 
 </details>
+
+#### GROUP BY
+
+<details><summary>SHOW ALL</summary>
+
+- Show all the ename along with their mgr name
+
+```
+select e.ename, m.ename as mgr from emp e, emp m where e.mgr = m.empno
+```
+
+- List the emp who earns more then BLAKE
+
+```
+select a.ename, a.sal from emp a, emp b where b.ename = 'BLAKE' and b.sal < a.sal
+```
+
+- Show the emp who joined before their mgr
+
+```
+select a.ename, a.hiredate from emp a, emp b where a.mgr = b.empno and a.hiredate < b.hiredate
+```
+
+- Show ename and which mgr manages who many employee
+
+```
+select b.ename, count(b.ename) as totalemp from emp a, emp b where a.mgr = b.empno group by b.ename
+```
+
+```
+select b.ename, count(*) as totalemp from emp a, emp b where a.mgr = b.empno group by b.ename
+```
+
+- Show the name of mgr who manages most emp
+
+```
+select b.ename, count(*) from emp a, emp b where a.mgr = b.empno group by b.ename having count(*) = (select max(count(*)) from emp a, emp b where a.mgr = b.empno group by b.ename)
+```
+
+</details>
