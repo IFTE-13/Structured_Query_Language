@@ -194,6 +194,48 @@
 
 </details>
 
+#### SELF JOIN
+
+> The SELF JOIN in SQL, as its name implies, is used to join a table to itself. This means that each row in a table is joined to itself and every other row in that table. However, referencing the same table more than once within a single query will result in an error. To avoid this, SQL SELF JOIN aliases are used.
+
+<details><summary>SHOW ALL</summary>
+
+- Show all the ename along with their mgr name
+
+```
+select e.ename, m.ename as mgr from emp e, emp m where e.mgr = m.empno
+```
+
+- List the emp who earns more then BLAKE
+
+```
+select a.ename, a.sal from emp a, emp b where b.ename = 'BLAKE' and b.sal < a.sal
+```
+
+- Show the emp who joined before their mgr
+
+```
+select a.ename, a.hiredate from emp a, emp b where a.mgr = b.empno and a.hiredate < b.hiredate
+```
+
+- Show ename and which mgr manages who many employee
+
+```
+select b.ename, count(b.ename) as totalemp from emp a, emp b where a.mgr = b.empno group by b.ename
+```
+
+```
+select b.ename, count(*) as totalemp from emp a, emp b where a.mgr = b.empno group by b.ename
+```
+
+- Show the name of mgr who manages most emp
+
+```
+select b.ename, count(*) from emp a, emp b where a.mgr = b.empno group by b.ename having count(*) = (select max(count(*)) from emp a, emp b where a.mgr = b.empno group by b.ename)
+```
+
+</details>
+
 #### SUB QUERY
 
 > A subquery is a SQL query nested inside a larger query.
@@ -307,44 +349,137 @@ UPDATE DEPT SET loc = 'Washington' WHERE loc = 'CHICAGO'
 
 </details>
 
-#### SELF JOIN
+#### PL/SQL
 
-> The SELF JOIN in SQL, as its name implies, is used to join a table to itself. This means that each row in a table is joined to itself and every other row in that table. However, referencing the same table more than once within a single query will result in an error. To avoid this, SQL SELF JOIN aliases are used.
+> PL/SQL stands for “Procedural Language extensions to the Structured Query Language”. SQL is a popular language for both querying and updating data in the relational database management systems (RDBMS). PL/SQL adds many procedural constructs to SQL language to overcome some limitations of SQL. Besides, PL/SQL provides a more comprehensive programming language solution for building mission-critical applications on Oracle Databases.
+
+1. Basic Loop (will execute once like do-while loop)
+2. While Loop
+3. For Loop
 
 <details><summary>SHOW ALL</summary>
 
-- Show all the ename along with their mgr name
+- Basic Loop
 
-```
-select e.ename, m.ename as mgr from emp e, emp m where e.mgr = m.empno
-```
-
-- List the emp who earns more then BLAKE
-
-```
-select a.ename, a.sal from emp a, emp b where b.ename = 'BLAKE' and b.sal < a.sal
-```
-
-- Show the emp who joined before their mgr
-
-```
-select a.ename, a.hiredate from emp a, emp b where a.mgr = b.empno and a.hiredate < b.hiredate
+```sql
+Declare
+a number(3) := 0;
+Begin
+   loop
+    dbms_output.put_line(a);
+    a:=(a+1);
+    Exit when a>5;
+   end loop;
+end;
 ```
 
-- Show ename and which mgr manages who many employee
+- While Loop
 
-```
-select b.ename, count(b.ename) as totalemp from emp a, emp b where a.mgr = b.empno group by b.ename
+```sql
+Declare
+a number(3) := 0;
+begin
+   while a<5
+   loop
+     dbms_output.put_line(a);
+     a := a+1;
+   end loop;
+end;
 ```
 
-```
-select b.ename, count(*) as totalemp from emp a, emp b where a.mgr = b.empno group by b.ename
+- For Loop
+
+```sql
+Declare
+i number(3);
+Begin
+   for i in 1..10 loop
+    dbms_output.put_line(i);
+   end loop;
+end;
 ```
 
-- Show the name of mgr who manages most emp
+- Program to print first 100 odd numbers in descending order.
 
+```sql
+Declare
+a number(3) := 99;
+begin
+   while a>0
+   loop
+     dbms_output.put_line(a);
+     a := a-2;
+   end loop;
+end;
 ```
-select b.ename, count(*) from emp a, emp b where a.mgr = b.empno group by b.ename having count(*) = (select max(count(*)) from emp a, emp b where a.mgr = b.empno group by b.ename)
+
+- Program to print factorial series till the nth number.
+
+```sql
+Declare
+a number(3) := 1;
+n number(3) := 5;
+
+begin
+ while n > 0 loop
+  a := n*a;
+  n := n-1;
+  end loop;
+
+dbms_output.put_line(a);
+end;
+```
+
+- Program to find out the given number is prime or not.
+
+```sql
+declare
+n number(3) := 11;
+a number(3) := 2;
+temp number(3) := 1;
+
+begin
+    for a in 2..n/2 loop
+      if mod(n,a) = 0
+        then
+        temp := 0;
+        exit;
+      end if;
+    end loop;
+
+if temp = 1
+  then
+    dbms_output.put_line('Prime');
+  else
+    dbms_output.put_line('Not Prime');
+  end if;
+end;
+```
+
+- Program to print febonacci series till the nth number.
+
+```sql
+Declare
+first number(3) := 0;
+second number(3) := 1;
+temp number(3);
+
+n number(3) := 10;
+i number(3);
+
+begin
+dbms_output.put_line(first);
+dbms_output.put_line(second);
+
+for i in 2..n
+  loop
+    temp := (first + second);
+    first := second;
+    second := temp;
+
+    dbms_output.put_line(temp);
+  end loop;
+end;
 ```
 
 </details>
