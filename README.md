@@ -127,7 +127,7 @@
 
 > NON EQUI JOIN performs a JOIN using comparison operator other than equal(=) sign like >, <, >=, <= with conditions.
 
-<details><summary>SHOW ALL</summary>
+<details><summary>Quries</summary>
 
 - Display all the managers & clerks name, id along with their department details who work in Accounts and Marketing departments.
   ```
@@ -198,7 +198,7 @@
 
 > The SELF JOIN in SQL, as its name implies, is used to join a table to itself. This means that each row in a table is joined to itself and every other row in that table. However, referencing the same table more than once within a single query will result in an error. To avoid this, SQL SELF JOIN aliases are used.
 
-<details><summary>SHOW ALL</summary>
+<details><summary>Quries</summary>
 
 - Show all the ename along with their mgr name
 
@@ -240,7 +240,7 @@ select b.ename, count(*) from emp a, emp b where a.mgr = b.empno group by b.enam
 
 > A subquery is a SQL query nested inside a larger query.
 
-<details><summary>SHOW ALL</summary>
+<details><summary>Quries</summary>
 
 - Show the details of the min salary holder of the employee table.
   ```
@@ -308,7 +308,7 @@ UPDATE DEPT SET loc = 'Washington' WHERE loc = 'CHICAGO'
 
 > The GROUP BY statement groups rows that have the same values into summary rows. This statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
 
-<details><summary>SHOW ALL</summary>
+<details><summary>Quries</summary>
 
 - Find out the grade with the maximum No of employees.
   ```
@@ -357,7 +357,7 @@ UPDATE DEPT SET loc = 'Washington' WHERE loc = 'CHICAGO'
 2. While Loop
 3. For Loop
 
-<details><summary>SHOW ALL</summary>
+<details><summary>Loop Types</summary>
 
 - Basic Loop
 
@@ -398,6 +398,10 @@ Begin
    end loop;
 end;
 ```
+
+</details>
+
+<details><summary>Programs</summary>
 
 - Program to print first 100 odd numbers in descending order.
 
