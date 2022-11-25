@@ -716,7 +716,7 @@ end;
 
 <details><summary>More about cursor pointer</summary>
 
-###### Sales and Product table
+<details><summary>Tables</summary>
 
 - Sales table
 
@@ -741,24 +741,30 @@ insert into products values(4, 22);
 insert into products values(5, 25);
 ```
 
-###### Object Browser
+<details>
 
-> Sales Table
-> | Column Name | Data Type | Nullable | Default | Primary Key |
-> | :---------: | :---------: | :------: | :-----: | :---------: |
-> | CUSTOMER_ID | NUMBER(2,0) | Yes | - | - |
-> | PRODUCT_ID | NUMBER(3,0) | Yes | - | - |
-> | QUANTITY | NUMBER(3,0) | Yes | - | - |
+<details><summary>Object Browser</summary>
 
-> Product Table
-> | Column Name | Data Type | Nullable | Default | Primary Key |
-> | :---------: | :---------: | :------: | :-----: | :---------: |
-> | PRODUCT_ID | NUMBER(3,0) | Yes | - | - |
-> | PRICE | NUMBER(3,0) | Yes | - | - |
+- Sales Table
 
-###### Table
+| Column Name |  Data Type  | Nullable | Default | Primary Key |
+| :---------: | :---------: | :------: | :-----: | :---------: |
+| CUSTOMER_ID | NUMBER(2,0) |   Yes    |    -    |      -      |
+| PRODUCT_ID  | NUMBER(3,0) |   Yes    |    -    |      -      |
+|  QUANTITY   | NUMBER(3,0) |   Yes    |    -    |      -      |
 
-> Sales Table
+- Product Table
+
+| Column Name |  Data Type  | Nullable | Default | Primary Key |
+| :---------: | :---------: | :------: | :-----: | :---------: |
+| PRODUCT_ID  | NUMBER(3,0) |   Yes    |    -    |      -      |
+|    PRICE    | NUMBER(3,0) |   Yes    |    -    |      -      |
+
+<details>
+
+<details><summary>Table</summary>
+
+- Sales Table
 
 | CUSTOMER_ID | PRODUCT_ID | QUANTITY |
 | :---------: | :--------: | :------: |
@@ -768,15 +774,17 @@ insert into products values(5, 25);
 |     40      |     4      |    50    |
 |     50      |     3      |    10    |
 
-> Product Table
+- Product Table
 
-> | PRODUCT_ID | PRICE |
-> | :--------: | :---: |
-> |     1      |  20   |
-> |     2      |  10   |
-> |     3      |  15   |
-> |     4      |  22   |
-> |     5      |  25   |
+| PRODUCT_ID | PRICE |
+| :--------: | :---: |
+|     1      |  20   |
+|     2      |  10   |
+|     3      |  15   |
+|     4      |  22   |
+|     5      |  25   |
+
+<details>
 
 </details>
 
