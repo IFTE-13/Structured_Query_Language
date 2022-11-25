@@ -741,7 +741,7 @@ insert into products values(4, 22);
 insert into products values(5, 25);
 ```
 
-<details>
+</details>
 
 <details><summary>Object Browser</summary>
 
@@ -760,7 +760,7 @@ insert into products values(5, 25);
 | PRODUCT_ID  | NUMBER(3,0) |   Yes    |    -    |      -      |
 |    PRICE    | NUMBER(3,0) |   Yes    |    -    |      -      |
 
-<details>
+</details>
 
 <details><summary>Table</summary>
 
@@ -784,7 +784,7 @@ insert into products values(5, 25);
 |     4      |  22   |
 |     5      |  25   |
 
-<details>
+</details>
 
 </details>
 
