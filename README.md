@@ -498,7 +498,8 @@ end;
 <summary>Quries</summary>
 
 - Example of Procedure
-  > creation
+
+> creation
 
 ```sql
 create procedure
