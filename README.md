@@ -355,9 +355,9 @@ UPDATE DEPT SET loc = 'Washington' WHERE loc = 'CHICAGO'
 
 #### LOOP
 
-1. Basic Loop (will execute once like do-while loop)
-2. While Loop
-3. For Loop
+> 1.  Basic Loop (will execute once like do-while loop)
+> 2.  While Loop
+> 3.  For Loop
 
 <details><summary>Catagories</summary>
 
@@ -485,6 +485,36 @@ for i in 2..n
 
     dbms_output.put_line(temp);
   end loop;
+end;
+```
+
+</details>
+
+#### PROCEDURE
+
+> A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
+
+<details>
+<summary>Quries</summary>
+
+- Example of Procedure
+  > creation
+
+```sql
+create procedure
+create or replace procedure procedure1
+is
+begin
+dbms_output.put_line('Plsql Procedure');
+end;
+```
+
+> execution
+
+```sql
+execute
+begin
+procedure1;
 end;
 ```
 
