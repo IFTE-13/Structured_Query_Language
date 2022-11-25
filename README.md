@@ -495,9 +495,9 @@ end;
 > A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
 
 <details>
-<summary>Quries</summary>
+<summary>Catagories and Examples</summary>
 
-- Example of Procedure
+- Procedure with parameter
 
 > creation
 
@@ -527,7 +527,7 @@ end;
 > 2.  OUT
 > 3.  INOUT
 
-> creation
+> creation (IN parameter)
 
 ```sql
 create or replace procedure test(a number)
@@ -546,6 +546,123 @@ begin
 test(x);
 end;
 ```
+
+> creation (INOUT parameter)
+
+```sql
+create or replace procedure test1(INOUT a number(3))
+is
+begin
+a := a + a;
+end;
+```
+
+> execution
+
+```sql
+declare
+x number := 7;
+begin
+dbms_output.put_line('Value of x is: ' || x);
+test1(x);
+dbms_output.put_line('Value of x is: ' || x);
+end;
+```
+
+</details>
+
+<details>
+<summary>Procedure with Database</summary>
+
+- Create a procedure which will take department number as an input and show the department name,loc and no. of employees working on it.
+  > creation
+
+```sql
+create or replace procedure dept_details(depno in dept.deptno%type, depname out dept.dname%type, dloc out dept.loc%type, totalemp out number)
+is
+begin
+select dname into depname from dept where deptno = depno;
+select loc into dloc from dept where deptno = depno;
+select count(*) into totalemp from emp where deptno= depno group by deptno;
+end;
+```
+
+> execution
+
+```sql
+declare
+depno dept.deptno%type := :Dept_Number;
+depname dept.dname%type;
+dloc dept.loc%type;
+totalemp number;
+begin
+dept_details(depno, depname, dloc, totalemp);
+dbms_output.put_line('Department NO: ' || depno);
+dbms_output.put_line('Department Name: ' || depname);
+dbms_output.put_line('Department Location: ' || dloc);
+dbms_output.put_line('Department total employee: ' || totalemp);
+end;
+```
+
+- Create procedure which gets the name of all the employees and find out every one's job and bind it to an out parameter. (Use cursor for loop)
+
+> creation
+
+```sql
+create or replace procedure emp_job(empname in emp.ename%type, empjob out emp.job%type)
+is
+begin
+select job into empjob from emp where ename = empname;
+end;
+```
+
+> execution
+
+```sql
+declare
+cursor c1
+is
+select ename from emp;
+empjob emp.job%type;
+
+begin
+for i in c1 loop
+emp_job(i.ename, empjob);
+dbms_output.put_line('Employee Name: ' || i.ename || ' Job: ' || empjob);
+end loop;
+end;
+```
+
+- Create a procedure which will receive all the deptno one by one each time when the procedure will be called and find out total salary of the employees belong from that department and bind it to an out parameter. (Use cursor for loop)
+
+> creation
+
+```sql
+create or replace procedure dept_details1(depno in dept.deptno%type, salary out number)
+is
+begin
+select sum(sal) into salary from emp where deptno = depno;
+end;
+```
+
+> execution
+
+```sql
+declare
+cursor c1
+is
+select deptno from dept;
+salary number;
+
+begin
+for i in c1 loop
+dept_details1(i.deptno, salary);
+dbms_output.put_line('Department No: ' || i.deptno || ' Salary: ' || salary);
+end loop;
+end;
+```
+
+- Create a procedure NEW_EMP to insert a new employee in the EMP table. The procedure should contain a call to the function VALID_DEPTNO to check whether the department number specified for the new employee exists in the DEPT table.
 
 </details>
 
