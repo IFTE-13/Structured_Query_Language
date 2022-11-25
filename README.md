@@ -493,13 +493,17 @@ end;
 #### PROCEDURE
 
 > A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
+> A database object like table, view or sequence.
+> Can be parameterized or non-perameterized.
+> Don't return direct value
+> One procedure can be called inside another procedure.
 
 <details>
 <summary>Catagories and Examples</summary>
 
-- Procedure with parameter
+- Procedure
 
-> creation
+> creation (Without parameter)
 
 ```sql
 create procedure
@@ -575,7 +579,8 @@ end;
 <summary>Procedure with Database</summary>
 
 - Create a procedure which will take department number as an input and show the department name,loc and no. of employees working on it.
-  > creation
+
+> creation
 
 ```sql
 create or replace procedure dept_details(depno in dept.deptno%type, depname out dept.dname%type, dloc out dept.loc%type, totalemp out number)
@@ -663,6 +668,115 @@ end;
 ```
 
 - Create a procedure NEW_EMP to insert a new employee in the EMP table. The procedure should contain a call to the function VALID_DEPTNO to check whether the department number specified for the new employee exists in the DEPT table.
+
+</details>
+
+#### Function
+
+> A function is a set of SQL statements that perform a specific task.
+> A database object like table, view or sequence.
+> Return's direct value
+> A function can be called inside a procedure but procedures cann't called inside a function.
+> Used for validation.
+> Function supports bool.
+
+<details>
+<summary>Function with Database</summary>
+
+- Show the salary of employee from employee no.
+
+> creattion
+
+```sql
+create or replace function emp_sal(eno emp.empno%type)
+return emp.sal%type
+is
+esal emp.sal%type;
+begin
+select sal into esal from emp where empno = eno;
+return esal;
+end;
+```
+
+> execution
+
+```sql
+declare
+e_sal emp.sal%type;
+e_no emp.empno%type := :EMPLOYEE_NO;
+begin
+e_sal := emp_sal(e_no);
+dbms_output.put_line('Salary: '|| e_sal);
+end;
+```
+
+</details>
+
+## Cursor Pointer
+
+<details><summary>More about cursor pointer</summary>
+
+###### Sales and Product table
+
+- Sales table
+
+```
+create table sales (customer_ID number(2), product_ID number(3), quantity number(3));
+
+insert into sales values(10, 1, 100);
+insert into sales values(20, 5, 70);
+insert into sales values(30, 2, 150);
+insert into sales values(40, 4, 50);
+insert into sales values(50, 3, 10);
+```
+
+- Product table
+
+```
+create table products(product_ID number(3), price number(3));
+insert into products values(1, 20);
+insert into products values(2, 10);
+insert into products values(3, 15);
+insert into products values(4, 22);
+insert into products values(5, 25);
+```
+
+###### Object Browser
+
+> Sales Table
+> | Column Name | Data Type | Nullable | Default | Primary Key |
+> | :---------: | :---------: | :------: | :-----: | :---------: |
+> | CUSTOMER_ID | NUMBER(2,0) | Yes | - | - |
+> | PRODUCT_ID | NUMBER(3,0) | Yes | - | - |
+> | QUANTITY | NUMBER(3,0) | Yes | - | - |
+
+> Product Table
+> | Column Name | Data Type | Nullable | Default | Primary Key |
+> | :---------: | :---------: | :------: | :-----: | :---------: |
+> | PRODUCT_ID | NUMBER(3,0) | Yes | - | - |
+> | PRICE | NUMBER(3,0) | Yes | - | - |
+
+###### Table
+
+> Sales Table
+
+| CUSTOMER_ID | PRODUCT_ID | QUANTITY |
+| :---------: | :--------: | :------: |
+|     10      |     1      |   100    |
+|     20      |     5      |    70    |
+|     30      |     2      |   150    |
+|     40      |     4      |    50    |
+|     50      |     3      |    10    |
+
+> Product Table
+
+> | PRODUCT_ID | PRICE |
+> | :--------: | :---: |
+> |     1      |  20   |
+> |     2      |  10   |
+> |     3      |  15   |
+> |     4      |  22   |
+> |     5      |  25   |
 
 </details>
 
