@@ -353,6 +353,39 @@ UPDATE DEPT SET loc = 'Washington' WHERE loc = 'CHICAGO'
 
 > PL/SQL stands for “Procedural Language extensions to the Structured Query Language”. SQL is a popular language for both querying and updating data in the relational database management systems (RDBMS). PL/SQL adds many procedural constructs to SQL language to overcome some limitations of SQL. Besides, PL/SQL provides a more comprehensive programming language solution for building mission-critical applications on Oracle Databases.
 
+<details>
+<summary>Related Problems</summary>
+
+- Print a message using variable
+
+```sql
+DECLARE
+message varchar2(50);
+begin
+message := 'Hello world';
+dbms_output.put_line(message);
+end;
+```
+
+- Write a PL/SQL code block to calculate the area of the circle for a value of radius of 8.
+
+```sql
+area Number;
+perimeter Number;
+
+redius number := 8;
+
+pi constant number := 3.14;
+
+Begin
+area := pi*redius*redius;
+dbms_output.Put_line('Area =' || area);
+
+end;
+```
+
+</details>
+
 #### LOOP
 
 > 1.  Basic Loop (will execute once like do-while loop)
@@ -712,9 +745,9 @@ end;
 
 </details>
 
-## Cursor Pointer
+## Cursor For Loop
 
-<details><summary>More about cursor pointer</summary>
+<details><summary>More about cursor for loop</summary>
 
 <details><summary>Tables</summary>
 
@@ -786,6 +819,124 @@ insert into products values(5, 25);
 
 </details>
 
+<details><summary>Quries</summary>
+
+-4. Create a program which will update all employee’s salary. The increment will take place based on the experience.
+
+> 5000 = 5%
+> 4001 to 5000 = 7%
+> 3001 to 4000 = 10%
+> =<3000 = 12%
+
+```sql
+DECLARE
+ CURSOR C1
+ is
+ SELECT EMPNO, SAL FROM EMP WHERE DEPTNO=10;
+ i NUMBER(3);
+ eno emp.empno%type;
+ esal emp.sal%type;
+
+Begin
+ for i in C1 loop
+ eno := i.empno;
+ esal := i.sal;
+
+  IF (esal > 5000) THEN
+      esal := (esal+(esal*0.05));
+
+   ELSIF esal > 4001 and esal <= 5000 THEN
+      esal := (esal+(esal*0.07));
+
+   ELSIF esal > 3001 and esal <= 4000 THEN
+      esal := (esal+(esal*0.1));
+
+   ELSIF (esal <= 3000) THEN
+      esal := (esal+(esal*0.12));
+
+   END IF;
+
+   dbms_output.put_line('Empno: ' || eno || ' SALARY: ' || esal);
+
+
+end loop;
+
+end;
+```
+
+- Write a PLSQL program to take the customer_ID as an input. Display the list of unique product_IDs that customer purchased from the sales table.
+
+```sql
+declare
+cursor c1 is
+select product_ID, quantity, customer_id from sales;
+i number(3);
+cid number(3);
+qun number(3);
+pid number(3);
+x number(3);
+begin
+x := :Customer_id;
+for i in c1 loop
+cid := i.customer_ID;
+pid := i.product_ID;
+qun := i.quantity;
+if cid = x then
+    dbms_output.put_line('Product ID: ' || pid || ' Total order value: ' || qun);
+end if;
+end loop;
+end;
+```
+
+- Write a PLSQL program to take the customer_ID as an input. Display the total amount of that customer purchases.
+
+```sql
+
+```
+
+- Using cursors write a PLSQL program to print out on screen the product_ID and price for each product within the products table (ascending by product_ID).
+
+```sql
+declare
+cursor c1 is
+select product_ID, price from products ORDER BY product_ID ASC;
+i number(3);
+pid number(3);
+pri number(3);
+begin
+for i in c1 loop
+pid := i.product_ID;
+pri := i.price;
+dbms_output.put_line('Product ID: ' || pid || ' Price: ' || pri);
+end loop;
+end;
+```
+
+- Write a PLSQL program to display the total list of customer_IDs and the total order value for each customer (descending by customer_ID).
+
+```sql
+declare
+cursor c1 is
+select customer_ID, quantity from sales ORDER BY customer_ID DESC;
+i number(3);
+cid number(3);
+qun number(3);
+begin
+for i in c1 loop
+cid := i.customer_ID;
+qun := i.quantity;
+dbms_output.put_line('Customer ID: ' || cid || ' Total order value: ' || qun);
+end loop;
+end;
+```
+
+- All the customers wishes to increase their order quantity from current order to updated order. Enable the user to take input for the updated quantity. Update the sales table to reflect this change. Print out on screen from the main section of code the total quantity for customer 4 before and after the update.( Use cursor for loop)
+
+```sql
+
+```
+
+</details>
 </details>
 
 ### A simple Bakery Management System with PHP and ORACLE 10g Express Edition [Repository](https://github.com/IFTE-13/Bakery_Management "Bakery Management")
