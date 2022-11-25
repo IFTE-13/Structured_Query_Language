@@ -349,15 +349,17 @@ UPDATE DEPT SET loc = 'Washington' WHERE loc = 'CHICAGO'
 
 </details>
 
-#### PL/SQL
+## PL/SQL
 
 > PL/SQL stands for “Procedural Language extensions to the Structured Query Language”. SQL is a popular language for both querying and updating data in the relational database management systems (RDBMS). PL/SQL adds many procedural constructs to SQL language to overcome some limitations of SQL. Besides, PL/SQL provides a more comprehensive programming language solution for building mission-critical applications on Oracle Databases.
+
+#### LOOP
 
 1. Basic Loop (will execute once like do-while loop)
 2. While Loop
 3. For Loop
 
-<details><summary>Loop Types</summary>
+<details><summary>Catagories</summary>
 
 - Basic Loop
 
@@ -401,7 +403,7 @@ end;
 
 </details>
 
-<details><summary>Programs</summary>
+<details><summary>Related Problems</summary>
 
 - Program to print first 100 odd numbers in descending order.
 
