@@ -519,6 +519,34 @@ procedure1;
 end;
 ```
 
+- Parametarized procedure
+
+> Types of parameters
+>
+> 1.  IN (By default)
+> 2.  OUT
+> 3.  INOUT
+
+> creation
+
+```sql
+create or replace procedure test(a number)
+is
+begin
+dbms_output.put_line('Value of a is: ' || a);
+end;
+```
+
+> execution
+
+```sql
+declare
+x number := 7;
+begin
+test(x);
+end;
+```
+
 </details>
 
 ### A simple Bakery Management System with PHP and ORACLE 10g Express Edition [Repository](https://github.com/IFTE-13/Bakery_Management "Bakery Management")
