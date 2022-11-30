@@ -1,3 +1,38 @@
+## SQL COMMANDS
+
+1. DDL (Data Defination Language)
+
+- CREATE
+- ALTER
+- DROP
+- RENAME
+- TRUNCATE
+- COMMENT
+
+2. DML (Data Manipulation Language)
+
+- SELECT
+- INSERT
+- UPDATE
+- DELETE
+- MERGE
+- CALL
+- EXPLAIN PLAN
+- LOCK TABLE
+
+3. DCL (Data Control Language)
+
+- GRANT
+- REVOKE
+
+4. TCL (Transaction Control Language)
+
+- COMMIT
+- ROLLBACK
+- SAVE POINT
+- SET
+- TRANSACTION
+
 ## CREATE TABLE
 
 - DEPT table
@@ -821,7 +856,7 @@ insert into products values(5, 25);
 
 <details><summary>Quries</summary>
 
--4. Create a program which will update all employee’s salary. The increment will take place based on the experience.
+- Create a program which will update all employee’s salary. The increment will take place based on the experience.
 
 > 5000 = 5%
 > 4001 to 5000 = 7%
